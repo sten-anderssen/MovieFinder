@@ -15,7 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let task = try? NetworkManager.shared.loadMovies(for: "Batman", page: 1, onSucces: { (json) in
+            print(json)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        print(task?.request?.description)
+        
         return true
     }
 

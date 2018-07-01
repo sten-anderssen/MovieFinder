@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50CA15C20E90771005758C7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CA15B20E90771005758C7 /* NetworkManager.swift */; };
+		D50CA16220E9108B005758C7 /* UrlConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CA16120E9108B005758C7 /* UrlConstants.swift */; };
+		D50CA16320E933EE005758C7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50D3A2320E9026C00DE2414 /* Alamofire.framework */; };
+		D50CA16420E933EE005758C7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D50D3A2320E9026C00DE2414 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D50CA16B20E9564B005758C7 /* TMDBUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CA16A20E9564B005758C7 /* TMDBUrlBuilder.swift */; };
+		D50CA16D20E95EC2005758C7 /* UrlBuilderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CA16C20E95EC2005758C7 /* UrlBuilderUtils.swift */; };
 		D50D3A2420E9026C00DE2414 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50D3A2320E9026C00DE2414 /* Alamofire.framework */; };
 		D5334D7E20E900E3008F3249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5334D7D20E900E3008F3249 /* AppDelegate.swift */; };
 		D5334D8020E900E3008F3249 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5334D7F20E900E3008F3249 /* ViewController.swift */; };
@@ -26,7 +32,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D50CA16520E933EE005758C7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D50CA16420E933EE005758C7 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D50CA15B20E90771005758C7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D50CA16120E9108B005758C7 /* UrlConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConstants.swift; sourceTree = "<group>"; };
+		D50CA16A20E9564B005758C7 /* TMDBUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBUrlBuilder.swift; sourceTree = "<group>"; };
+		D50CA16C20E95EC2005758C7 /* UrlBuilderUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilderUtils.swift; sourceTree = "<group>"; };
 		D50D3A2320E9026C00DE2414 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D5334D7A20E900E3008F3249 /* MovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5334D7D20E900E3008F3249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D50D3A2420E9026C00DE2414 /* Alamofire.framework in Frameworks */,
+				D50CA16320E933EE005758C7 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,12 +84,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D50CA15820E90582005758C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D50CA15920E9058C005758C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D50CA15A20E90765005758C7 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D50CA15B20E90771005758C7 /* NetworkManager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		D50CA15D20E90BEE005758C7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D50CA16A20E9564B005758C7 /* TMDBUrlBuilder.swift */,
+				D50CA16C20E95EC2005758C7 /* UrlBuilderUtils.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		D50CA16020E90F11005758C7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D50CA16120E9108B005758C7 /* UrlConstants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		D50D3A2220E9026300DE2414 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				D50D3A2320E9026C00DE2414 /* Alamofire.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D50D3A2520E904B400DE2414 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D5334D7F20E900E3008F3249 /* ViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		D5334D7120E900E3008F3249 = {
@@ -89,12 +161,15 @@
 		D5334D7C20E900E3008F3249 /* MovieFinder */ = {
 			isa = PBXGroup;
 			children = (
+				D50CA16020E90F11005758C7 /* Constants */,
+				D50CA15D20E90BEE005758C7 /* Helper */,
+				D50CA15A20E90765005758C7 /* Manager */,
+				D50CA15920E9058C005758C7 /* Views */,
+				D50CA15820E90582005758C7 /* Model */,
+				D5CCFADF20E9055600A76D93 /* Supporting Files */,
+				D50D3A2520E904B400DE2414 /* ViewController */,
 				D5334D7D20E900E3008F3249 /* AppDelegate.swift */,
-				D5334D7F20E900E3008F3249 /* ViewController.swift */,
 				D5334D8120E900E3008F3249 /* Main.storyboard */,
-				D5334D8420E900E3008F3249 /* Assets.xcassets */,
-				D5334D8620E900E3008F3249 /* LaunchScreen.storyboard */,
-				D5334D8920E900E3008F3249 /* Info.plist */,
 			);
 			path = MovieFinder;
 			sourceTree = "<group>";
@@ -108,6 +183,16 @@
 			path = MovieFinderTests;
 			sourceTree = "<group>";
 		};
+		D5CCFADF20E9055600A76D93 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5334D8620E900E3008F3249 /* LaunchScreen.storyboard */,
+				D5334D8920E900E3008F3249 /* Info.plist */,
+				D5334D8420E900E3008F3249 /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,6 +203,7 @@
 				D5334D7620E900E3008F3249 /* Sources */,
 				D5334D7720E900E3008F3249 /* Frameworks */,
 				D5334D7820E900E3008F3249 /* Resources */,
+				D50CA16520E933EE005758C7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,6 +295,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D50CA16B20E9564B005758C7 /* TMDBUrlBuilder.swift in Sources */,
+				D50CA16D20E95EC2005758C7 /* UrlBuilderUtils.swift in Sources */,
+				D50CA15C20E90771005758C7 /* NetworkManager.swift in Sources */,
+				D50CA16220E9108B005758C7 /* UrlConstants.swift in Sources */,
 				D5334D8020E900E3008F3249 /* ViewController.swift in Sources */,
 				D5334D7E20E900E3008F3249 /* AppDelegate.swift in Sources */,
 			);
