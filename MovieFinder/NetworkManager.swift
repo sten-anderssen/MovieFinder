@@ -59,22 +59,27 @@ class NetworkManager {
     }
     
     // MARK: - TMDB
-    func loadMovies(for searchString: String, page: UInt, onSucces: @escaping (String) -> Void, onFailure: @escaping (Error) -> Void) throws -> DataRequest {
-        guard let url = try TMDBUrlBuilder.createSearchMovieUrl(for: searchString, page: page) else {
-            throw NetworkError(.badRequest)
-        }
-        
-        return session.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).validate().responseJSON { response in
-            switch response.result {
-            case .success:
-                guard let data = response.data, let jsonString = String(data: data, encoding: String.Encoding.utf8) else {
-                    onFailure(NetworkError(.invalidData))
-                    return
+    func searchMovies(for searchString: String, page: UInt, onSuccess: @escaping ([Movie]) -> Void, onFailure: @escaping (NetworkError) -> Void) throws -> DataRequest {
+        return session.request(TMDBRouter.search(kind: .movie, query: searchString, page: page))
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    do {
+                        guard let json = response.data else {
+                            onFailure(NetworkError(.internalError))
+                            return
+                        }
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMdd)
+                        let result = try decoder.decode(MovieResult.self, from: json)
+                        onSuccess(result.movies)
+                    } catch {
+                        onFailure(NetworkError(.invalidData))
+                    }
+                case .failure(let error):
+                    onFailure(NetworkError(error))
                 }
-                onSucces(jsonString)
-            case .failure(let error):
-                onFailure(NetworkError(error))
-            }
         }
     }
     
