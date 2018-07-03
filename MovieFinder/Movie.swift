@@ -14,14 +14,6 @@ struct Movie {
     let releaseDate: Date
     let overview: String
     let posterPath: String?
-    
-    init(id: Int, title: String, releaseDate: Date, overview: String, posterPath: String?) {
-        self.id = id
-        self.title = title
-        self.releaseDate = releaseDate
-        self.overview = overview
-        self.posterPath = posterPath
-    }
 }
 
 extension Movie: Decodable {
