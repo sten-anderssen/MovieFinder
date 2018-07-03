@@ -12,6 +12,7 @@ struct MovieSearchResultCellModel {
     let title: String
     let releaseDate: Date?
     let overview: String
+    let posterPath: String?
     
     var releaseDateString: String {
         guard let releaseDate = releaseDate else {

@@ -15,6 +15,10 @@ class MovieSearchResultViewCell: BaseTableComponentViewCell {
     @IBOutlet private weak var releaseLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
+    override func prepareForReuse() {
+        posterImageView.image = UIImage(named: "PosterPlaceholderImage")
+    }
+    
     // MARK: - BaseTableComponentProtocol
     override func updateUI() {
         guard let model = data as? MovieSearchResultCellModel else {
@@ -28,6 +32,10 @@ class MovieSearchResultViewCell: BaseTableComponentViewCell {
             releaseLabel.text = "Unknown release date"
         } else {
             releaseLabel.text = model.releaseDateString
+        }
+        
+        if let posterPath = model.posterPath {
+            posterImageView.af_setImage(withURLRequest: TMDBRouter.moviePoster(path: posterPath))
         }
     }
 }

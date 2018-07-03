@@ -14,7 +14,7 @@ struct SearchMovieModel {
     
     var convertedData: [MovieSearchResultCellModel] {
         return data.map { movie in
-            return MovieSearchResultCellModel(title: movie.title, releaseDate: movie.releaseDate, overview: movie.overview)
+            return MovieSearchResultCellModel(title: movie.title, releaseDate: movie.releaseDate, overview: movie.overview, posterPath: movie.posterPath)
         }
     }
 }

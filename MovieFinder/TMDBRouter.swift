@@ -11,17 +11,28 @@ import Alamofire
 enum TMDBRouter: URLRequestConvertible {
 
     case search(kind: TMDBSearchKind, query: String, page: UInt)
+    case moviePoster(path: String)
     
-    private static let baseUrlString: String = "https://api.themoviedb.org/3/"
     private static let apiKey: String = "2696829a81b1b5827d515ff121700838"
 
     internal enum TMDBSearchKind: String {
         case movie
     }
     
+    var baseUrlString: String {
+        switch self {
+        case .search:
+            return "https://api.themoviedb.org/3/"
+        case .moviePoster:
+            return "https://image.tmdb.org/t/p/"
+        }
+    }
+    
     var method: HTTPMethod {
         switch self {
         case .search:
+            return .get
+        case .moviePoster:
             return .get
         }
     }
@@ -30,6 +41,8 @@ enum TMDBRouter: URLRequestConvertible {
         switch self {
         case .search(let kind, _, _):
             return "search/" + kind.rawValue
+        case .moviePoster(let path):
+            return "w92" + path
         }
     }
     
@@ -42,19 +55,18 @@ enum TMDBRouter: URLRequestConvertible {
                 "page": String(page),
                 "include_adult": "true"
             ]
+        default:
+            return [:]
         }
     }
 
     
     func asURLRequest() throws -> URLRequest {
-        let url = try TMDBRouter.baseUrlString.asURL()
+        let url = try baseUrlString.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
 
-        switch self {
-        case .search:
-            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-        }
+        urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         
         return urlRequest
     }

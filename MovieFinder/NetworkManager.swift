@@ -8,6 +8,8 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
+import UIKit
 
 struct NetworkError: Error {
     enum ErrorKind {
@@ -93,5 +95,22 @@ class NetworkManager {
                 }
         }
     }
+    
+//    func loadMoviePoster(for imagePath: String, onSuccess: @escaping (UIImage) -> Void, onFailure: @escaping (NetworkError) -> Void) throws -> DataRequest {
+//        return session.request(TMDBRouter.moviePoster(path: imagePath))
+//            .validate()
+//            .responseImage(completionHandler: { response in
+//                switch response.result {
+//                case .success:
+//                    guard let image = response.result.value else {
+//                        onFailure(NetworkError(.serverError))
+//                        return
+//                    }
+//                    onSuccess(image)
+//                case .failure(let error):
+//                    onFailure(NetworkError(error))
+//                }
+//            })
+//    }
     
 }

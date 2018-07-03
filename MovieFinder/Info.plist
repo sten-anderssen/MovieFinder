@@ -6,6 +6,11 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>image.tmdb.org</key>
+			<dict>
+				<key>NSlncudesSubdomains</key>
+				<true/>
+			</dict>
 			<key>api.themoviedb.org</key>
 			<dict>
 				<key>NSlncudesSubdomains</key>
