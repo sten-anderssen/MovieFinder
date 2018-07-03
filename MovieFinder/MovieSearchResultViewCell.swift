@@ -22,7 +22,12 @@ class MovieSearchResultViewCell: BaseTableComponentViewCell {
         }
         
         titleLabel.text = model.title
-        releaseLabel.text = model.releaseDateString
         descriptionLabel.text = model.overview
+        
+        if model.releaseDateString.isEmpty {
+            releaseLabel.text = "Unknown release date"
+        } else {
+            releaseLabel.text = model.releaseDateString
+        }
     }
 }

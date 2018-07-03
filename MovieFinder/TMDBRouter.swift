@@ -39,7 +39,8 @@ enum TMDBRouter: URLRequestConvertible {
             return [
                 "api_key": TMDBRouter.apiKey,
                 "query": query,
-                "page": String(page)
+                "page": String(page),
+                "include_adult": "true"
             ]
         }
     }

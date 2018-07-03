@@ -27,14 +27,21 @@
             </objects>
             <point key="canvasLocation" x="-1401" y="42"/>
         </scene>
-        <!--Search Movie View Controller-->
+        <!--Movie Search View Controller-->
         <scene sceneID="poN-Vr-eUI">
             <objects>
-                <viewController id="aEz-Ry-nQz" customClass="SearchMovieViewController" customModule="MovieFinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aEz-Ry-nQz" customClass="MovieSearchViewController" customModule="MovieFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="65X-yy-jvw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchCallToActionImage" translatesAutoresizingMaskIntoConstraints="NO" id="iG6-Uz-8F4">
+                                <rect key="frame" x="68" y="94" width="238" height="159"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="159" id="GU3-6w-3EB"/>
+                                    <constraint firstAttribute="width" constant="238" id="Pyu-n4-eGc"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiG-px-CJZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,10 +49,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aiG-px-CJZ" firstAttribute="trailing" secondItem="Clf-fe-ewj" secondAttribute="trailing" id="FSs-6Y-2tT"/>
-                            <constraint firstItem="aiG-px-CJZ" firstAttribute="leading" secondItem="Clf-fe-ewj" secondAttribute="leading" id="LQb-gs-G9s"/>
-                            <constraint firstItem="aiG-px-CJZ" firstAttribute="top" secondItem="65X-yy-jvw" secondAttribute="top" id="UUe-WH-evQ"/>
-                            <constraint firstItem="aiG-px-CJZ" firstAttribute="bottom" secondItem="Clf-fe-ewj" secondAttribute="bottom" id="x31-Ta-BDk"/>
+                            <constraint firstItem="aiG-px-CJZ" firstAttribute="bottom" secondItem="Clf-fe-ewj" secondAttribute="bottom" id="NSk-rF-Jw7"/>
+                            <constraint firstItem="iG6-Uz-8F4" firstAttribute="top" secondItem="Clf-fe-ewj" secondAttribute="top" constant="30" id="Vf4-aS-OC4"/>
+                            <constraint firstItem="aiG-px-CJZ" firstAttribute="leading" secondItem="65X-yy-jvw" secondAttribute="leading" id="bsj-Xk-uux"/>
+                            <constraint firstAttribute="trailing" secondItem="aiG-px-CJZ" secondAttribute="trailing" id="shD-91-A7A"/>
+                            <constraint firstItem="iG6-Uz-8F4" firstAttribute="centerX" secondItem="65X-yy-jvw" secondAttribute="centerX" id="wyz-fh-ebQ"/>
+                            <constraint firstItem="aiG-px-CJZ" firstAttribute="top" secondItem="65X-yy-jvw" secondAttribute="top" id="xiL-5x-Z2B"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Clf-fe-ewj"/>
                     </view>
@@ -77,7 +86,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="168.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wfG-nD-TbJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PosterPlaceholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="wfG-nD-TbJ">
                                                     <rect key="frame" x="15" y="11" width="92" height="138"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -94,7 +103,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QJ-Ak-iNG">
                                                     <rect key="frame" x="115" y="40" width="245" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xh2-Fc-H53">
@@ -135,7 +144,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="N2e-tl-9yW" firstAttribute="bottom" secondItem="aJS-4O-XUp" secondAttribute="bottom" id="AHP-O9-96S"/>
                             <constraint firstItem="N2e-tl-9yW" firstAttribute="top" secondItem="0nH-AR-ZIl" secondAttribute="top" id="CHT-jH-DIp"/>
@@ -153,4 +162,9 @@
             <point key="canvasLocation" x="485.60000000000002" y="41.829085457271368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PosterPlaceholderImage" width="92" height="138"/>
+        <image name="SearchCallToActionImage" width="238" height="159"/>
+    </resources>
+    <color key="tintColor" red="1" green="0.61598195034300596" blue="0.23566569109445501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

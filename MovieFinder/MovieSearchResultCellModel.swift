@@ -10,10 +10,13 @@ import Foundation
 
 struct MovieSearchResultCellModel {
     let title: String
-    let releaseDate: Date
+    let releaseDate: Date?
     let overview: String
     
     var releaseDateString: String {
+        guard let releaseDate = releaseDate else {
+            return ""
+        }
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .none
