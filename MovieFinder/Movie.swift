@@ -12,12 +12,14 @@ struct Movie {
     let id: Int
     let title: String
     let releaseDate: Date
+    let overview: String
     let posterPath: String?
     
-    init(id: Int, title: String, releaseDate: Date, posterPath: String?) {
+    init(id: Int, title: String, releaseDate: Date, overview: String, posterPath: String?) {
         self.id = id
         self.title = title
         self.releaseDate = releaseDate
+        self.overview = overview
         self.posterPath = posterPath
     }
 }
@@ -27,6 +29,7 @@ extension Movie: Decodable {
         case id = "id"
         case title = "title"
         case releaseDate = "release_date"
+        case overview = "overview"
         case posterPath = "poster_path"
     }
     
@@ -35,9 +38,10 @@ extension Movie: Decodable {
         let id: Int = try container.decode(Int.self, forKey: .id)
         let title: String = try container.decode(String.self, forKey: .title)
         let releaseDate: Date = try container.decode(Date.self, forKey: .releaseDate)
+        let overview: String = try container.decode(String.self, forKey: .overview)
         let posterPath: String? = try? container.decode(String.self, forKey: .posterPath)
 
-        self.init(id: id, title: title, releaseDate: releaseDate, posterPath: posterPath)
+        self.init(id: id, title: title, releaseDate: releaseDate, overview: overview, posterPath: posterPath)
     }
 }
 

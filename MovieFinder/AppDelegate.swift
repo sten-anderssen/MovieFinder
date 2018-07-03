@@ -15,12 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        let task = try? NetworkManager.shared.searchMovies(for: "Batman", page: 1, onSuccess: { (foundMovies) in
-            print(foundMovies.first?.title)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
             
         return true
     }

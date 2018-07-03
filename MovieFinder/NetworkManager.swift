@@ -47,6 +47,7 @@ class NetworkManager {
     static let shared = NetworkManager()
     let session: SessionManager
     
+    /// Check this property for network reachability
     var isNetworkReachable: Bool {
         return NetworkReachabilityManager()?.isReachable ?? false
     }
@@ -59,6 +60,16 @@ class NetworkManager {
     }
     
     // MARK: - TMDB
+    
+    
+    /// Querys TMDB movies for a given search string
+    ///
+    /// - Parameters:
+    ///   - searchString: The search string e.g. "Batman"
+    ///   - page: The result page number
+    ///   - onSuccess: The success block if the network request was successful with found movies
+    ///   - onFailure: The failure block if the network request failed with error
+    /// - Returns: A DataRequest object
     func searchMovies(for searchString: String, page: UInt, onSuccess: @escaping ([Movie]) -> Void, onFailure: @escaping (NetworkError) -> Void) throws -> DataRequest {
         return session.request(TMDBRouter.search(kind: .movie, query: searchString, page: page))
             .validate()
