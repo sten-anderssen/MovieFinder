@@ -54,8 +54,16 @@ class TMDBRouterTests: XCTestCase {
         }
     }
     
-    func testSearchMovieWithPageIsZeroAsUrlRequest() {
-        XCTAssertThrowsError(try TMDBRouter.search(kind: .movie, query: "", page: 0).asURLRequest())
+    func testSearchMovieWithEmptyQuery() {
+        XCTAssertThrowsError(try TMDBRouter.search(kind: .movie, query: "", page: 1).asURLRequest())
+    }
+    
+    func testSearchMovieWithPageIs0() {
+        XCTAssertThrowsError(try TMDBRouter.search(kind: .movie, query: "asdf", page: 0).asURLRequest())
+    }
+    
+    func testSearchMovieWithPageIsOver1000() {
+        XCTAssertThrowsError(try TMDBRouter.search(kind: .movie, query: "asdf", page: 1001).asURLRequest())
     }
     
     func testMoviePosterAsUrlRequest() {

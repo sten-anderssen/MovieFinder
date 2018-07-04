@@ -18,7 +18,6 @@
 		D5334D8320E900E3008F3249 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5334D8120E900E3008F3249 /* Main.storyboard */; };
 		D5334D8520E900E3008F3249 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5334D8420E900E3008F3249 /* Assets.xcassets */; };
 		D5334D8820E900E3008F3249 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5334D8620E900E3008F3249 /* LaunchScreen.storyboard */; };
-		D5334D9320E900E3008F3249 /* MovieFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5334D9220E900E3008F3249 /* MovieFinderTests.swift */; };
 		D553CA3C20EBDDC8004E77DC /* BaseSectionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D553CA3B20EBDDC8004E77DC /* BaseSectionDataModel.swift */; };
 		D553CA4020EBDF02004E77DC /* BaseTableComponentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D553CA3F20EBDF02004E77DC /* BaseTableComponentViewCell.swift */; };
 		D553CA4220EBDFA3004E77DC /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D553CA4120EBDFA3004E77DC /* MovieSearchViewController.swift */; };
@@ -78,7 +77,6 @@
 		D5334D8720E900E3008F3249 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5334D8920E900E3008F3249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5334D8E20E900E3008F3249 /* MovieFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5334D9220E900E3008F3249 /* MovieFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinderTests.swift; sourceTree = "<group>"; };
 		D5334D9420E900E3008F3249 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D553CA3B20EBDDC8004E77DC /* BaseSectionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSectionDataModel.swift; sourceTree = "<group>"; };
 		D553CA3F20EBDF02004E77DC /* BaseTableComponentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableComponentViewCell.swift; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 				D553CA4620EBF170004E77DC /* Helper */,
 				D553CA4320EBEA1D004E77DC /* Model */,
 				D50CA17120E9627A005758C7 /* Network */,
-				D5334D9220E900E3008F3249 /* MovieFinderTests.swift */,
 				D5334D9420E900E3008F3249 /* Info.plist */,
 			);
 			path = MovieFinderTests;
@@ -447,7 +444,6 @@
 			files = (
 				D553CA4520EBEA2B004E77DC /* MovieTests.swift in Sources */,
 				D553CA4820EBF1E4004E77DC /* DateFormatterExtensionTests.swift in Sources */,
-				D5334D9320E900E3008F3249 /* MovieFinderTests.swift in Sources */,
 				D553CA6820ED2D10004E77DC /* TMDBRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
