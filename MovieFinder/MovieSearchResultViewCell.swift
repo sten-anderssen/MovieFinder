@@ -15,10 +15,6 @@ class MovieSearchResultViewCell: BaseTableComponentViewCell {
     @IBOutlet private weak var releaseLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
-    override func prepareForReuse() {
-        posterImageView.image = UIImage(named: "PosterPlaceholderImage")
-    }
-    
     // MARK: - BaseTableComponentProtocol
     override func updateUI() {
         guard let model = data as? MovieSearchResultCellModel else {
@@ -35,7 +31,7 @@ class MovieSearchResultViewCell: BaseTableComponentViewCell {
         }
         
         if let posterPath = model.posterPath {
-            posterImageView.af_setImage(withURLRequest: TMDBRouter.moviePoster(path: posterPath))
+            posterImageView.af_setImage(withURLRequest: TMDBRouter.moviePoster(size: .small, path: posterPath), placeholderImage: UIImage(named: "PosterPlaceholderImage"))
         }
     }
 }
