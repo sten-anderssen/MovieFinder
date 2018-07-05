@@ -31,7 +31,7 @@ class MovieSearchResultViewCell: BaseTableComponentViewCell {
         }
         
         if let posterPath = model.posterPath {
-            posterImageView.af_setImage(withURLRequest: TMDBRouter.moviePoster(size: .small, path: posterPath), placeholderImage: UIImage(named: "PosterPlaceholderImage"))
+            posterImageView.af_setImage(withURLRequest: TMDBRouter.moviePoster(size: .medium, path: posterPath), placeholderImage: UIImage(named: "PosterPlaceholderImage"))
         }
     }
 }

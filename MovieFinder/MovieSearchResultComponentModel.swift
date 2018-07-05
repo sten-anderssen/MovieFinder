@@ -7,7 +7,7 @@
 //
 
 class MovieSearchResultComponentModel: BaseCollectionComponentModel {
-    
+
     override func convertData() {
         super.convertData()
         guard let rowData = data as? [MovieSearchResultCellModel] else {

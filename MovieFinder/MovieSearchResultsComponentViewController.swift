@@ -8,20 +8,31 @@
 
 import UIKit
 
+protocol MovieSearchResultsComponentDelegate: class {
+    func componentDidDisplayLastCell(_ component: MovieSearchResultsComponentViewController)
+}
+
 class MovieSearchResultsComponentViewController: BaseTableComponentViewController {
     
-    // MARK: - BaseComponentProtocol
+    // MARK: - Variables
     
-    override func refresh() {
-        if tableView.dequeueReusableCell(withIdentifier: cellIdentifier(forIndexPath: IndexPath(row: 0, section: 0))) == nil {
-            registerCellIdentifiers()
-        }
-        super.refresh()
-    }
+    weak var delegate: MovieSearchResultsComponentDelegate?
     
     // MARK: - BaseTableComponentProtocol
     
     override func cellIdentifier(forIndexPath: IndexPath) -> String {
         return "MovieSearchResultViewCell"
+    }
+}
+
+extension MovieSearchResultsComponentViewController: UITableViewDelegate, UIScrollViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let section = model?.convertedData?.first, section.rows.count - 1 == indexPath.row else {
+            return
+        }
+        
+        delegate?.componentDidDisplayLastCell(self)
     }
 }

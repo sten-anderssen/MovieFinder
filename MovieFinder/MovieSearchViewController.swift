@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class MovieSearchViewController: UIViewController, BaseComponentProtocol {
     
@@ -22,13 +21,23 @@ class MovieSearchViewController: UIViewController, BaseComponentProtocol {
         }
     }
     
+    // MARK: - Computed Variables
+    
     private lazy var searchController: UISearchController? = {
         UISearchController(searchResultsController: movieSearchResultsComponent)
     }()
+    
     private lazy var movieSearchResultsComponent: MovieSearchResultsComponentViewController? = {
-        return UIStoryboard.main.instantiateViewController(withIdentifier: "MovieSearchResultsComponentViewController") as? MovieSearchResultsComponentViewController
+        let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "MovieSearchResultsComponentViewController") as? MovieSearchResultsComponentViewController
+        controller?.delegate = self
+        return controller
     }()
-    private var searchMovieTask: DataRequest?
+    
+    private lazy var dataController: MovieSearchDataController = {
+        let controller = MovieSearchDataController()
+        controller.delegate = self
+        return controller
+    }()
 
     // MARK: - View Lifecycle
     
@@ -39,7 +48,6 @@ class MovieSearchViewController: UIViewController, BaseComponentProtocol {
             return
         }
         
-        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search movies"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = true
@@ -62,17 +70,14 @@ class MovieSearchViewController: UIViewController, BaseComponentProtocol {
     }
     
     // MARK: - Helper Methods
-    func loadSearchResults(for searchString: String) {
-        do {
-            searchMovieTask = try NetworkManager.shared.searchMovies(for: searchString, page: 1, onSuccess: { movies in
-                self.model = SearchMovieModel(data: movies)
-            }) { error in
-            
-            }
-        } catch (let error) {
-            
-        }
+    
+    func resetMovieSearchResults() {
+        dataController.canLoadMore = false
+        model = SearchMovieModel(data: [])
+        resetMovieSearchResultsComponent()
     }
+    
+    // MARK: - MovieSearchResultComponent
     
     private func refreshMovieSearchResultsComponent() {
         guard let movieSearchResultsComponent = movieSearchResultsComponent else {
@@ -87,15 +92,58 @@ class MovieSearchViewController: UIViewController, BaseComponentProtocol {
         }
         return MovieSearchResultComponentModel(with: model.convertedData)
     }
+    
+    private func resetMovieSearchResultsComponent() {
+        guard let movieSearchResultsComponent = movieSearchResultsComponent else {
+            return
+        }
+        movieSearchResultsComponent.model = nil
+    }
 }
+
+// MARK: - MovieSearchDataControllerDelegate
+
+extension MovieSearchViewController: MovieSearchDataControllerDelegate {
+    
+    func dataController(_ controller: MovieSearchDataController, didLoadData movies: [Movie]) {
+        if let data = model?.data, !data.isEmpty {
+            model = SearchMovieModel(data: data + movies)
+        } else {
+            model = SearchMovieModel(data: movies)
+        }
+    }
+}
+
+// MARK: - MovieSearchResultsComponentDelegate
+
+extension MovieSearchViewController: MovieSearchResultsComponentDelegate {
+    
+    func componentDidDisplayLastCell(_ component: MovieSearchResultsComponentViewController) {
+        guard let searchString = searchController?.searchBar.text else {
+            return
+        }
+        dataController.loadMore(for: searchString)
+    }
+}
+
+// MARK: - UISearchBarDelegate
 
 extension MovieSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchString = searchBar.text, !searchString.isEmpty else {
-            // TODO: Show error for empty search string
+        guard let searchString = searchBar.text else {
             return
         }
-        loadSearchResults(for: searchString)
+        dataController.loadMovieSearchResults(for: searchString)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        resetMovieSearchResults()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            resetMovieSearchResults()
+        }
     }
 }

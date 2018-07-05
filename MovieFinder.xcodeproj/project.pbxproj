@@ -37,6 +37,7 @@
 		D553CA6420EC3C06004E77DC /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D553CA6120EC3BFE004E77DC /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D553CA6820ED2D10004E77DC /* TMDBRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D553CA6720ED2D10004E77DC /* TMDBRouterTests.swift */; };
 		D56879A020EABAD700DD10A7 /* BaseComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D568799F20EABAD700DD10A7 /* BaseComponentProtocol.swift */; };
+		D573B31920EE959B00269D4E /* MovieSearchDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D573B31820EE959B00269D4E /* MovieSearchDataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		D553CA6120EC3BFE004E77DC /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		D553CA6720ED2D10004E77DC /* TMDBRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBRouterTests.swift; sourceTree = "<group>"; };
 		D568799F20EABAD700DD10A7 /* BaseComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponentProtocol.swift; sourceTree = "<group>"; };
+		D573B31820EE959B00269D4E /* MovieSearchDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		D5334D7C20E900E3008F3249 /* MovieFinder */ = {
 			isa = PBXGroup;
 			children = (
+				D573B31720EE955F00269D4E /* Controller */,
 				D553CA4920EBF403004E77DC /* Components */,
 				D553CA3D20EBDEE7004E77DC /* View */,
 				D56879A220EABB5E00DD10A7 /* ViewModel */,
@@ -303,6 +306,14 @@
 				D553CA3B20EBDDC8004E77DC /* BaseSectionDataModel.swift */,
 			);
 			name = Abstract;
+			sourceTree = "<group>";
+		};
+		D573B31720EE955F00269D4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D573B31820EE959B00269D4E /* MovieSearchDataController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		D5CCFADF20E9055600A76D93 /* Supporting Files */ = {
@@ -428,6 +439,7 @@
 				D553CA4220EBDFA3004E77DC /* MovieSearchViewController.swift in Sources */,
 				D553CA5620EBFBD3004E77DC /* MovieSearchResultComponentModel.swift in Sources */,
 				D553CA4D20EBF518004E77DC /* BaseTableComponentViewController.swift in Sources */,
+				D573B31920EE959B00269D4E /* MovieSearchDataController.swift in Sources */,
 				D5327E9F20EAA7A100D2D042 /* DateFormatterExtension.swift in Sources */,
 				D553CA5A20EC033E004E77DC /* MovieSearchResultViewCell.swift in Sources */,
 				D553CA4B20EBF432004E77DC /* MovieSearchResultsComponentViewController.swift in Sources */,

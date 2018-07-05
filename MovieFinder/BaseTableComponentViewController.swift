@@ -95,6 +95,9 @@ import UIKit
 
     /// Refresh the table view. Will be called on data change.
     func refresh() {
+        if tableView.dequeueReusableCell(withIdentifier: cellIdentifier(forIndexPath: IndexPath(row: 0, section: 0))) == nil {
+            registerCellIdentifiers()
+        }
         tableView?.reloadData()
     }
 }
