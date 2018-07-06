@@ -12,6 +12,7 @@
 		D50CA16420E933EE005758C7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D50D3A2320E9026C00DE2414 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D50CA16B20E9564B005758C7 /* TMDBRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CA16A20E9564B005758C7 /* TMDBRouter.swift */; };
 		D50D3A2420E9026C00DE2414 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50D3A2320E9026C00DE2414 /* Alamofire.framework */; };
+		D52B4D3D20EFA82900C54C9E /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52B4D3C20EFA82900C54C9E /* UIAlertControllerExtension.swift */; };
 		D5327E9C20EA9EE200D2D042 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5327E9B20EA9EE200D2D042 /* Movie.swift */; };
 		D5327E9F20EAA7A100D2D042 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5327E9E20EAA7A100D2D042 /* DateFormatterExtension.swift */; };
 		D5334D7E20E900E3008F3249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5334D7D20E900E3008F3249 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		D50CA15B20E90771005758C7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D50CA16A20E9564B005758C7 /* TMDBRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBRouter.swift; sourceTree = "<group>"; };
 		D50D3A2320E9026C00DE2414 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		D52B4D3C20EFA82900C54C9E /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		D5327E9B20EA9EE200D2D042 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D5327E9E20EAA7A100D2D042 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		D5334D7A20E900E3008F3249 /* MovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,14 +166,15 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
-		D5327E9D20EAA79600D2D042 /* Helper */ = {
+		D5327E9D20EAA79600D2D042 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				D5327E9E20EAA7A100D2D042 /* DateFormatterExtension.swift */,
 				D553CA5220EBFAF7004E77DC /* UIViewControllerExtension.swift */,
 				D553CA5F20EC2B64004E77DC /* UIStoryboardExtension.swift */,
+				D52B4D3C20EFA82900C54C9E /* UIAlertControllerExtension.swift */,
 			);
-			name = Helper;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		D5334D7120E900E3008F3249 = {
@@ -201,7 +204,7 @@
 				D553CA3D20EBDEE7004E77DC /* View */,
 				D56879A220EABB5E00DD10A7 /* ViewModel */,
 				D568799E20EABAC700DD10A7 /* Protocol */,
-				D5327E9D20EAA79600D2D042 /* Helper */,
+				D5327E9D20EAA79600D2D042 /* Extensions */,
 				D50CA15D20E90BEE005758C7 /* Network */,
 				D50CA15820E90582005758C7 /* Model */,
 				D5CCFADF20E9055600A76D93 /* Supporting Files */,
@@ -432,6 +435,7 @@
 				D553CA3C20EBDDC8004E77DC /* BaseSectionDataModel.swift in Sources */,
 				D50CA16B20E9564B005758C7 /* TMDBRouter.swift in Sources */,
 				D50CA15C20E90771005758C7 /* NetworkManager.swift in Sources */,
+				D52B4D3D20EFA82900C54C9E /* UIAlertControllerExtension.swift in Sources */,
 				D553CA6020EC2B64004E77DC /* UIStoryboardExtension.swift in Sources */,
 				D553CA5E20EC2913004E77DC /* SearchMovieModel.swift in Sources */,
 				D56879A020EABAD700DD10A7 /* BaseComponentProtocol.swift in Sources */,

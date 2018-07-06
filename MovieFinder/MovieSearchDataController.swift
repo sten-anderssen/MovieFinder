@@ -8,9 +8,16 @@
 
 import Foundation
 import Alamofire
+import UIKit
+
+enum MovieSearchDataError: Error {
+    case notFound
+    case network(error: Error)
+}
 
 protocol MovieSearchDataControllerDelegate: class {
     func dataController(_ controller: MovieSearchDataController, didLoadData movies: [Movie])
+    func dataController(_ controller: MovieSearchDataController, didFail error: MovieSearchDataError)
 }
 
 class MovieSearchDataController {
@@ -28,13 +35,17 @@ class MovieSearchDataController {
     func loadMovieSearchResults(for searchString: String) {
         do {
             searchMovieTask = try NetworkManager.shared.searchMovies(for: searchString, page: 1, onSuccess: { movies in
+                guard !movies.isEmpty else {
+                    self.delegate?.dataController(self, didFail: .notFound)
+                    return
+                }
                 self.delegate?.dataController(self, didLoadData: movies)
                 self.canLoadMore = true
             }) { error in
-                
+                self.delegate?.dataController(self, didFail: .network(error: error))
             }
-        } catch {
-            
+        } catch (let error) {
+            self.delegate?.dataController(self, didFail: .network(error: error))
         }
     }
     

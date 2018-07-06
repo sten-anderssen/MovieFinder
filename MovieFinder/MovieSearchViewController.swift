@@ -112,6 +112,19 @@ extension MovieSearchViewController: MovieSearchDataControllerDelegate {
             model = SearchMovieModel(data: movies)
         }
     }
+    
+    func dataController(_ controller: MovieSearchDataController, didFail error: MovieSearchDataError) {
+        switch error {
+        case .notFound:
+            let title = "Movie not found"
+            let message = "Sorry, there is no movie with that name."
+            let controller = UIAlertController.singleButtonAlert(with: title, message: message, buttonTitle: "Ok")
+            present(controller, animated: true, completion: nil)
+        case .network(let error):
+            let controller = UIAlertController.alert(for: error)
+            present(controller, animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - MovieSearchResultsComponentDelegate

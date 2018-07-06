@@ -74,7 +74,7 @@ enum TMDBRouter: URLRequestConvertible {
         switch self {
         case .search(_, let query, let page):
             guard (1...1000).contains(page), !query.isEmpty else {
-                throw NetworkError(.badRequest)
+                throw NetworkError.badRequest
             }
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         default:

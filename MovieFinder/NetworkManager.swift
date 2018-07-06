@@ -11,35 +11,29 @@ import Alamofire
 import AlamofireImage
 import UIKit
 
-struct NetworkError: Error {
-    enum ErrorKind {
-        case badRequest
-        case serverError
-        case invalidData
-        case internalError
-        case noConnection
-    }
+enum NetworkError: Error {
     
-    let kind: ErrorKind
-    
-    init(_ kind: ErrorKind) {
-        self.kind = kind
-    }
+    case badRequest
+    case internalError
+    case invalidResponse
+    case noConnection
+    case serverError
+    case network(error: Error)
     
     init(_ error: Error) {
         let error = error as NSError
         
         switch error.code {
         case NSURLErrorNotConnectedToInternet, NSURLErrorInternationalRoamingOff, NSURLErrorDataNotAllowed, NSURLErrorNetworkConnectionLost:
-            self.kind = .noConnection
+            self = .noConnection
         case NSURLErrorTimedOut, NSURLErrorCannotFindHost, NSURLErrorDNSLookupFailed, NSURLErrorCannotConnectToHost, NSURLErrorResourceUnavailable, NSURLErrorBackgroundSessionWasDisconnected, NSURLErrorCannotLoadFromNetwork:
             if NetworkManager.shared.isNetworkReachable {
-                self.kind = .serverError
+                self = .serverError
             } else {
-                self.kind = .noConnection
+                self = .noConnection
             }
         default:
-            self.kind = .internalError
+            self = .network(error: error)
         }
     }
 }
@@ -80,7 +74,7 @@ class NetworkManager {
                 case .success:
                     do {
                         guard let json = response.data else {
-                            onFailure(NetworkError(.internalError))
+                            onFailure(.internalError)
                             return
                         }
                         let decoder = JSONDecoder()
@@ -88,7 +82,7 @@ class NetworkManager {
                         let result = try decoder.decode(MovieResult.self, from: json)
                         onSuccess(result.movies)
                     } catch {
-                        onFailure(NetworkError(.invalidData))
+                        onFailure(.invalidResponse)
                     }
                 case .failure(let error):
                     onFailure(NetworkError(error))
