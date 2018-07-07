@@ -20,7 +20,7 @@ class MovieSearchResultsComponentViewController: BaseTableComponentViewControlle
     
     // MARK: - BaseTableComponentProtocol
     
-    override func cellIdentifier(forIndexPath: IndexPath) -> String {
+    override func cellIdentifier(for indexPath: IndexPath) -> String {
         return "MovieSearchResultViewCell"
     }
 }

@@ -8,27 +8,26 @@
 
 import UIKit
 
-class MovieSearchViewController: UIViewController, BaseComponentProtocol {
+class MovieSearchViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet private weak var movieSearchResultsComponentContainer: UIView!
-    
-    // MARK: - Variables
-    private var model: SearchMovieModel? {
-        didSet {
-            refresh()
-        }
-    }
+    @IBOutlet private weak var movieSearchComponentContainerView: UIView!
     
     // MARK: - Computed Variables
     
     private lazy var searchController: UISearchController? = {
-        UISearchController(searchResultsController: movieSearchResultsComponent)
+        UISearchController(searchResultsController: nil)
     }()
     
     private lazy var movieSearchResultsComponent: MovieSearchResultsComponentViewController? = {
         let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "MovieSearchResultsComponentViewController") as? MovieSearchResultsComponentViewController
+        controller?.delegate = self
+        return controller
+    }()
+    
+    private lazy var movieSearchQueriesComponent: MovieSearchQueriesComponentViewController? = {
+        let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "MovieSearchQueriesComponentViewController") as? MovieSearchQueriesComponentViewController
         controller?.delegate = self
         return controller
     }()
@@ -50,54 +49,69 @@ class MovieSearchViewController: UIViewController, BaseComponentProtocol {
         
         searchController.searchBar.placeholder = "Search movies"
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
         
         navigationItem.titleView = searchController.searchBar
         searchController.searchBar.barStyle = .black
         searchController.searchBar.delegate = self
         
         definesPresentationContext = true
-    }
-    
-    func refresh() {
-        guard let model = model else {
-            return
-        }
         
-        if !model.data.isEmpty {
-            refreshMovieSearchResultsComponent()
-        }
+        setupMovieSearchResultsComponent()
+        setupMovieSearchQueriesComponent()
     }
     
     // MARK: - Helper Methods
     
-    func resetMovieSearchResults() {
+    // MARK: Loading data
+    private func loadMovieResults(for query: String) {
+        movieSearchResultsComponent?.model = nil
+        dataController.loadMovieSearchResults(for: query)
+    }
+    
+    private func loadMoreMovieResults(for query: String) {
+        dataController.loadMore(for: query)
+    }
+    
+    // MARK: Update Components
+    private func showRecentMovieSearchQueries() {
+        let queries = ["Iron Man", "Batman", "Superman", "Black Panther", "Avengers", "Wonder Woman", "Ant Man", "Thor", "Captain America", "Aqua Man", "Hawkeye"]
+        movieSearchQueriesComponent?.model = MovieSearchQueriesComponentModel(with: queries)
+        movieSearchResultsComponent?.model = nil
+        movieSearchQueriesComponent?.view.isHidden = false
+    }
+    
+    private func showMovieSearchResults(with movies: [Movie]) {
+        if let data = movieSearchResultsComponent?.model?.data, !data.isEmpty {
+            movieSearchResultsComponent?.model = MovieSearchResultComponentModel(with: data + movies)
+        } else {
+            movieSearchResultsComponent?.model = MovieSearchResultComponentModel(with: movies)
+        }
+        movieSearchQueriesComponent?.view.isHidden = true
+        movieSearchResultsComponent?.view.isHidden = false
+    }
+    
+    private func hideSearchComponents() {
+        movieSearchQueriesComponent?.view.isHidden = true
+        movieSearchResultsComponent?.view.isHidden = true
         dataController.canLoadMore = false
-        model = SearchMovieModel(data: [])
-        resetMovieSearchResultsComponent()
     }
     
-    // MARK: - MovieSearchResultComponent
-    
-    private func refreshMovieSearchResultsComponent() {
+    // MARK: Component Setup
+    private func setupMovieSearchResultsComponent() {
         guard let movieSearchResultsComponent = movieSearchResultsComponent else {
             return
         }
-        movieSearchResultsComponent.model = createMovieSearchResultComponentModel()
+        loadChildViewController(movieSearchResultsComponent, in: movieSearchComponentContainerView)
+        movieSearchResultsComponent.view.isHidden = true
     }
     
-    private func createMovieSearchResultComponentModel() -> MovieSearchResultComponentModel? {
-        guard let model = model else {
-            return nil
-        }
-        return MovieSearchResultComponentModel(with: model.convertedData)
-    }
-    
-    private func resetMovieSearchResultsComponent() {
-        guard let movieSearchResultsComponent = movieSearchResultsComponent else {
+    private func setupMovieSearchQueriesComponent() {
+        guard let movieSearchQueriesComponent = movieSearchQueriesComponent else {
             return
         }
-        movieSearchResultsComponent.model = nil
+        loadChildViewController(movieSearchQueriesComponent, in: movieSearchComponentContainerView)
+        movieSearchQueriesComponent.view.isHidden = true
     }
 }
 
@@ -106,11 +120,7 @@ class MovieSearchViewController: UIViewController, BaseComponentProtocol {
 extension MovieSearchViewController: MovieSearchDataControllerDelegate {
     
     func dataController(_ controller: MovieSearchDataController, didLoadData movies: [Movie]) {
-        if let data = model?.data, !data.isEmpty {
-            model = SearchMovieModel(data: data + movies)
-        } else {
-            model = SearchMovieModel(data: movies)
-        }
+        showMovieSearchResults(with: movies)
     }
     
     func dataController(_ controller: MovieSearchDataController, didFail error: MovieSearchDataError) {
@@ -135,7 +145,18 @@ extension MovieSearchViewController: MovieSearchResultsComponentDelegate {
         guard let searchString = searchController?.searchBar.text else {
             return
         }
-        dataController.loadMore(for: searchString)
+        loadMoreMovieResults(for: searchString)
+    }
+}
+
+// MARK: - MovieSearchQueriesComponentDelegate
+
+extension MovieSearchViewController: MovieSearchQueriesComponentDelegate {
+    
+    func component(_ component: MovieSearchQueriesComponentViewController, didSelect query: String) {
+        searchController?.searchBar.text = query
+        searchController?.searchBar.resignFirstResponder()
+        loadMovieResults(for: query)
     }
 }
 
@@ -143,20 +164,27 @@ extension MovieSearchViewController: MovieSearchResultsComponentDelegate {
 
 extension MovieSearchViewController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        guard let searchString = searchBar.text, searchString.isEmpty else {
+            return
+        }
+        showRecentMovieSearchQueries()
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchString = searchBar.text else {
             return
         }
-        dataController.loadMovieSearchResults(for: searchString)
+        loadMovieResults(for: searchString)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        resetMovieSearchResults()
+        hideSearchComponents()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            resetMovieSearchResults()
+            showRecentMovieSearchQueries()
         }
     }
 }

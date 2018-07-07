@@ -10,10 +10,12 @@ class MovieSearchResultComponentModel: BaseCollectionComponentModel {
 
     override func convertData() {
         super.convertData()
-        guard let rowData = data as? [MovieSearchResultCellModel] else {
+        guard let data = data as? [Movie] else {
             return
         }
-        
+        let rowData = data.map { movie in
+            return MovieSearchResultCellModel(title: movie.title, releaseDate: movie.releaseDate, overview: movie.overview, posterPath: movie.posterPath)
+        }
         convertedData?.append(BaseSectionDataModel(with: rowData))
     }
 }
