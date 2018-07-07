@@ -41,6 +41,7 @@ class MovieSearchDataController {
                 }
                 self.delegate?.dataController(self, didLoadData: movies)
                 self.canLoadMore = true
+                SearchQueryManager.shared.save(searchString)
             }) { error in
                 self.delegate?.dataController(self, didFail: .network(error: error))
             }

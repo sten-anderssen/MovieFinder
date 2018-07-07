@@ -14,6 +14,7 @@
 		D50D3A2420E9026C00DE2414 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50D3A2320E9026C00DE2414 /* Alamofire.framework */; };
 		D52B4D3D20EFA82900C54C9E /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52B4D3C20EFA82900C54C9E /* UIAlertControllerExtension.swift */; };
 		D52B4D3F20EFD56700C54C9E /* MovieSearchQueriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52B4D3E20EFD56700C54C9E /* MovieSearchQueriesViewCell.swift */; };
+		D52F9BA120F139E800068208 /* SearchQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F9BA020F139E800068208 /* SearchQueryManager.swift */; };
 		D5327E9C20EA9EE200D2D042 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5327E9B20EA9EE200D2D042 /* Movie.swift */; };
 		D5327E9F20EAA7A100D2D042 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5327E9E20EAA7A100D2D042 /* DateFormatterExtension.swift */; };
 		D5334D7E20E900E3008F3249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5334D7D20E900E3008F3249 /* AppDelegate.swift */; };
@@ -75,6 +76,7 @@
 		D50D3A2320E9026C00DE2414 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D52B4D3C20EFA82900C54C9E /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		D52B4D3E20EFD56700C54C9E /* MovieSearchQueriesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchQueriesViewCell.swift; sourceTree = "<group>"; };
+		D52F9BA020F139E800068208 /* SearchQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQueryManager.swift; sourceTree = "<group>"; };
 		D5327E9B20EA9EE200D2D042 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D5327E9E20EAA7A100D2D042 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		D5334D7A20E900E3008F3249 /* MovieFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 		D52F9B9F20F139B300068208 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				D52F9BA020F139E800068208 /* SearchQueryManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				D553CA6020EC2B64004E77DC /* UIStoryboardExtension.swift in Sources */,
 				D56879A020EABAD700DD10A7 /* BaseComponentProtocol.swift in Sources */,
 				D5D077DD20EFD64D000E7D18 /* MovieSearchQueriesCellModel.swift in Sources */,
+				D52F9BA120F139E800068208 /* SearchQueryManager.swift in Sources */,
 				D553CA5120EBF754004E77DC /* BaseCollectionComponentModel.swift in Sources */,
 				D553CA4220EBDFA3004E77DC /* MovieSearchViewController.swift in Sources */,
 				D553CA5620EBFBD3004E77DC /* MovieSearchResultComponentModel.swift in Sources */,

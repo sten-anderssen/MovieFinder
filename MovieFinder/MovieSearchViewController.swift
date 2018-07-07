@@ -75,7 +75,7 @@ class MovieSearchViewController: UIViewController {
     
     // MARK: Update Components
     private func showRecentMovieSearchQueries() {
-        let queries = ["Iron Man", "Batman", "Superman", "Black Panther", "Avengers", "Wonder Woman", "Ant Man", "Thor", "Captain America", "Aqua Man", "Hawkeye"]
+        let queries = SearchQueryManager.shared.retrieveRecentSearchQueries()
         movieSearchQueriesComponent?.model = MovieSearchQueriesComponentModel(with: queries)
         movieSearchResultsComponent?.model = nil
         movieSearchQueriesComponent?.view.isHidden = false
