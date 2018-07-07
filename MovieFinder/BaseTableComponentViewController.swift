@@ -47,7 +47,7 @@ import UIKit
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier(forIndexPath: indexPath), for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier(for: indexPath), for: indexPath)
         if let cell = cell as? BaseTableComponentViewCell, let data = model?.getCellData(forIndexPath: indexPath) {
             cell.data = data
         }
@@ -72,7 +72,7 @@ import UIKit
             for sectionIndex in 0..<numberOfSections {
                 if let numberOfRows = model?.numberOfItemsInSection(section: sectionIndex) {
                     for rowIndex in 0..<numberOfRows {
-                        let newCellIdentifier = cellIdentifier(forIndexPath: IndexPath(row: rowIndex, section: sectionIndex))
+                        let newCellIdentifier = cellIdentifier(for: IndexPath(row: rowIndex, section: sectionIndex))
                         cellIdentifiers.insert(newCellIdentifier)
                     }
                 }
@@ -86,16 +86,16 @@ import UIKit
     
     /// Returns a cell identifier for a given index path. Must be overriden in subclass.
     ///
-    /// - Parameter forIndexPath: IndexPath of the cell
+    /// - Parameter indexPath: IndexPath of the cell
     /// - Returns: The cell identifier as String.
-    func cellIdentifier(forIndexPath: IndexPath) -> String {
+    func cellIdentifier(for indexPath: IndexPath) -> String {
         assert(false, "This method must be overriden by the subclass")
         return ""
     }
 
     /// Refresh the table view. Will be called on data change.
     func refresh() {
-        if tableView.dequeueReusableCell(withIdentifier: cellIdentifier(forIndexPath: IndexPath(row: 0, section: 0))) == nil {
+        if tableView.dequeueReusableCell(withIdentifier: cellIdentifier(for: IndexPath(row: 0, section: 0))) == nil {
             registerCellIdentifiers()
         }
         tableView?.reloadData()
