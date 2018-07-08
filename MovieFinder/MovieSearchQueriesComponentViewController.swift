@@ -30,10 +30,10 @@ extension MovieSearchQueriesComponentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let model = model as? MovieSearchQueriesComponentModel, let data = model.data as? [String?], let query = data[indexPath.row] else {
+        guard let model = model as? MovieSearchQueriesComponentModel, let data = model.data as? [Query?], let query = data[indexPath.row] else {
             return
         }
         
-        delegate?.component(self, didSelect: query)
+        delegate?.component(self, didSelect: query.value)
     }
 }

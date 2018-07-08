@@ -41,7 +41,7 @@ class MovieSearchDataController {
                 }
                 self.delegate?.dataController(self, didLoadData: movies)
                 self.canLoadMore = true
-                SearchQueryManager.shared.save(searchString)
+                try? PersistenceManager.shared.save(Query(value: searchString, date: Date()))
             }) { error in
                 self.delegate?.dataController(self, didFail: .network(error: error))
             }

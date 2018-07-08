@@ -37,7 +37,7 @@ extension Movie: Decodable {
     }
 }
 
-class MovieResult: Decodable {
+struct MovieResult: Decodable {
     let movies: [Movie]
     
     enum CodingKeys : String, CodingKey {

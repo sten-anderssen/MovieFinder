@@ -10,11 +10,11 @@ class MovieSearchQueriesComponentModel: BaseCollectionComponentModel {
     
     override func convertData() {
         super.convertData()
-        guard let data = data as? [String] else {
+        guard let data = data as? [Query] else {
             return
         }
         let rowData = data.map { query in
-            return MovieSearchQueriesCellModel(query: query)
+            return MovieSearchQueriesCellModel(query: query.value)
         }
         convertedData?.append(BaseSectionDataModel(with: rowData))
     }

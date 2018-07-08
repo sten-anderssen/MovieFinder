@@ -75,7 +75,10 @@ class MovieSearchViewController: UIViewController {
     
     // MARK: Update Components
     private func showRecentMovieSearchQueries() {
-        let queries = SearchQueryManager.shared.retrieveRecentSearchQueries()
+        let queries = PersistenceManager.shared.fetchRecentSearchQueries()
+        guard !queries.isEmpty else {
+            return
+        }
         movieSearchQueriesComponent?.model = MovieSearchQueriesComponentModel(with: queries)
         movieSearchResultsComponent?.model = nil
         movieSearchQueriesComponent?.view.isHidden = false
