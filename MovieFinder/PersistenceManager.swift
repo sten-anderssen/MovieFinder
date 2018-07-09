@@ -12,10 +12,10 @@ class PersistenceManager {
     
     static let shared = PersistenceManager()
     
+    let kMaxSearchQueries = 10
+    
     // Use NSKeyedArchiver as persistence strategy
     let persistenceController = CodingPersistenceController()
-    
-    private let kMaxSearchQueries = 10
     
     private init() {}
     
@@ -41,6 +41,7 @@ class PersistenceManager {
         return persistenceController.findAll(Query.self).sorted()
     }
     
+    /// Save all changes to a persistence store. Should be called before data gets lost otherwise.
     func save() {
         try? persistenceController.save()
     }

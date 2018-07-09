@@ -11,7 +11,7 @@ import Foundation
 class CodingPersistenceController {
     
     private lazy var queryStore: [Query] = {
-        guard let filePath = filePath,
+        guard let filePath = queryStoreFilePath,
               let data = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? Data else {
             return []
         }
@@ -21,12 +21,19 @@ class CodingPersistenceController {
             return []
         }
     }()
+    
+    private lazy var queryStoreFilePath: String? = {
+        guard let fileUrl = fileUrl else {
+            return nil
+        }
+        return fileUrl.appendingPathComponent("Query").path
+    }()
 
-    private var filePath: String? {
+    private lazy var fileUrl: URL? = {
         let fileManager = FileManager.default
         let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-        return url?.appendingPathComponent("Data").path
-    }
+        return url
+    }()
 }
 
 // MARK: - PersistenceController
@@ -56,11 +63,10 @@ extension CodingPersistenceController: PersistenceController {
         } else {
             throw PersistenceError.systemError
         }
-        
     }
     
     func save() throws {
-        guard let filePath = filePath, !queryStore.isEmpty else {
+        guard let filePath = queryStoreFilePath, !queryStore.isEmpty else {
             throw PersistenceError.saveError
         }
         
