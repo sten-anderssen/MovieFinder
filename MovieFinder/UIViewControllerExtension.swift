@@ -12,10 +12,22 @@ extension UIViewController {
     
     private static let kFadeInAnimationDuration: TimeInterval = 0.2
     
+    
+    /// Loads a view controller in a container view as a child view controller.
+    ///
+    /// - Parameters:
+    ///   - childViewController: The view controller that should be loaded into the container view
+    ///   - containerView: The container view the view controller should be loaded to
     func loadChildViewController(_ childViewController: UIViewController, in containerView: UIView) {
         loadChildViewController(childViewController, in: containerView, animated: false)
     }
     
+    /// Loads a view controller in a container view as a child view controller animated.
+    ///
+    /// - Parameters:
+    ///   - childViewController: The view controller that should be loaded into the container view
+    ///   - containerView: The container view the view controller should be loaded to
+    ///   - animated: Set this flag to true to add a nice fading transition effect
     func loadChildViewController(_ childViewController: UIViewController, in containerView: UIView, animated: Bool) {
         addChildViewController(childViewController)
         containerView.addSubview(childViewController.view)
@@ -38,6 +50,9 @@ extension UIViewController {
         })
     }
     
+    /// Unloads a view controller as child view controller from his parent view.
+    ///
+    /// - Parameter childViewController: The view controller that should be unloaded.
     func unloadChildViewController(_ childViewController: UIViewController) {
         childViewController.willMove(toParentViewController: nil)
         childViewController.view.removeFromSuperview()

@@ -10,6 +10,7 @@ import UIKit
 
 extension UIStoryboard {
     
+    /// Returns the "Main" storyboard file
     static var main: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
     }

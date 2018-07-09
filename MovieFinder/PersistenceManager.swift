@@ -8,15 +8,18 @@
 
 import Foundation
 
+/// Manager class to handle fetching and storing of data to a persistent store.
 class PersistenceManager {
     
     static let shared = PersistenceManager()
     
+    // Limits recent search queries to a certain number
     let kMaxSearchQueries = 10
     
     // Use NSKeyedArchiver as persistence strategy
     let persistenceController = CodingPersistenceController()
     
+    // Singletons are only allowed to be initialized internally
     private init() {}
     
     func save(_ searchQuery: Query) throws {
@@ -37,6 +40,7 @@ class PersistenceManager {
         try persistenceController.insert(searchQuery)
     }
     
+    /// Returns up to ten of the most recent search queries ordered by date from newest to oldest.
     func fetchRecentSearchQueries() -> [Query] {
         return persistenceController.findAll(Query.self).sorted()
     }

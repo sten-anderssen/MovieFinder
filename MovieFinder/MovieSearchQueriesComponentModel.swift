@@ -6,6 +6,7 @@
 //  Copyright © 2018 Sten Anderßen. All rights reserved.
 //
 
+/// View model that holds search query data that is displayed in a collection component controller.
 class MovieSearchQueriesComponentModel: BaseCollectionComponentModel {
     
     override func convertData() {

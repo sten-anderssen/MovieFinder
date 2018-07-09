@@ -20,11 +20,14 @@ protocol MovieSearchDataControllerDelegate: class {
     func dataController(_ controller: MovieSearchDataController, didFail error: MovieSearchDataError)
 }
 
+
+/// Data controller that handles downloading of data necessary for a view controller.
 class MovieSearchDataController {
     
     // MARK: - Variables
     weak var delegate: MovieSearchDataControllerDelegate?
     
+    /// Returns true if there are more pages to load from the API
     var canLoadMore = false
 
     private var searchMovieTask: DataRequest?
@@ -32,6 +35,9 @@ class MovieSearchDataController {
     
     // MARK: - Networking
     
+    /// Loads movies asynchronously for a given search string.
+    ///
+    /// - Parameter searchString: The string used for querying a movie database
     func loadMovieSearchResults(for searchString: String) {
         do {
             searchMovieTask = try NetworkManager.shared.searchMovies(for: searchString, page: 1, onSuccess: { movies in
@@ -50,6 +56,9 @@ class MovieSearchDataController {
         }
     }
     
+    /// Loads the next page if there is any for a search query.
+    ///
+    /// - Parameter searchString: The string used for querying a movie database
     func loadMore(for searchString: String) {
         if let searchMovieTask = searchMovieTask, !searchMovieTask.progress.isFinished {
             return

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Cell model that holds movie data that can be displayed in a movie cell view.
 struct MovieSearchResultCellModel {
     let title: String
     let releaseDate: Date?

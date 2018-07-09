@@ -8,6 +8,7 @@
 
 import Alamofire
 
+/// Router class that creates url requests for the TMDB API.
 enum TMDBRouter: URLRequestConvertible {
 
     case search(kind: TMDBSearchKind, query: String, page: UInt)

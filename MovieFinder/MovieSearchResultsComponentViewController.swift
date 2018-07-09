@@ -12,6 +12,7 @@ protocol MovieSearchResultsComponentDelegate: class {
     func componentDidDisplayLastCell(_ component: MovieSearchResultsComponentViewController)
 }
 
+/// Component view controller that handles the displaying of movies in a table view.
 class MovieSearchResultsComponentViewController: BaseTableComponentViewController {
     
     // MARK: - Variables

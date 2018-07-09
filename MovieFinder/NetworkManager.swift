@@ -38,12 +38,13 @@ enum NetworkError: Error {
     }
 }
 
+/// Manager class that is responsible for any network request a view needs for displaying data from an API.
 class NetworkManager {
     
     static let shared = NetworkManager()
     let session: SessionManager
     
-    /// Check this property for network reachability
+    /// Returns network reachability as a boolean.
     var isNetworkReachable: Bool {
         return NetworkReachabilityManager()?.isReachable ?? false
     }
@@ -55,10 +56,9 @@ class NetworkManager {
         session = Alamofire.SessionManager(configuration: configuration)
     }
     
-    // MARK: - TMDB
+    // MARK: - TMDB API
     
-    
-    /// Querys TMDB movies for a given search string
+    /// Querys TMDB movie database for a given search string.
     ///
     /// - Parameters:
     ///   - searchString: The search string e.g. "Batman"

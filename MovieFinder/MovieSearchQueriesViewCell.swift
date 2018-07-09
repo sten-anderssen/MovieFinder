@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// View cell that displays a search query in a table view.
 class MovieSearchQueriesViewCell: BaseTableComponentViewCell {
     
     @IBOutlet private weak var queryLabel: UILabel!

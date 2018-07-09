@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Model class that holds data for a search query. Is storeable in a persistent store.
 struct Query: Storeable {
     let value: String
     let date: Date

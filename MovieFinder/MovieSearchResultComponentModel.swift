@@ -6,6 +6,7 @@
 //  Copyright © 2018 Sten Anderßen. All rights reserved.
 //
 
+/// View model that holds movie data that is displayed in a collection component controller.
 class MovieSearchResultComponentModel: BaseCollectionComponentModel {
 
     override func convertData() {

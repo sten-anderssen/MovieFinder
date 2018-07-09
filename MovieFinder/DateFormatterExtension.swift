@@ -9,6 +9,8 @@
 import Foundation
 
 extension DateFormatter {
+    
+    /// Returns a formatter with date format "2018-06-01"
     static let yyyyMMdd: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

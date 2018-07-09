@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// View model class that wraps data in section and rows that can be displayed in a collection view.
 class BaseSectionDataModel {
     let rows: [Any]
     var sectionTitle: String?

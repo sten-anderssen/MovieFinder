@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// View cell that displays a movie in a table view.
 class MovieSearchResultViewCell: BaseTableComponentViewCell {
     
     @IBOutlet private weak var posterImageView: UIImageView!

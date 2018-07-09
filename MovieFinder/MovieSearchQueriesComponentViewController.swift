@@ -12,6 +12,7 @@ protocol MovieSearchQueriesComponentDelegate: class {
     func component(_ component: MovieSearchQueriesComponentViewController, didSelect query: String)
 }
 
+/// Component view controller that handles the displaying of search queries in a table view.
 class MovieSearchQueriesComponentViewController: BaseTableComponentViewController {
     
     // MARK: - Variables

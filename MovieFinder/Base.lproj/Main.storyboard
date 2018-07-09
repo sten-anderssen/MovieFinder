@@ -228,5 +228,5 @@
         <image name="PosterPlaceholderImage" width="92" height="138"/>
         <image name="SearchCallToActionImage" width="238" height="159"/>
     </resources>
-    <color key="tintColor" red="1" green="0.61598195034300596" blue="0.23566569109445501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+    <color key="tintColor" red="1" green="0.61568627450980395" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

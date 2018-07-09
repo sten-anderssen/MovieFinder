@@ -8,7 +8,8 @@
 
 import UIKit
 
-@objc class BaseTableComponentViewController: UIViewController, BaseComponentProtocol, UITableViewDataSource {
+/// Base class for a table view component controller.
+class BaseTableComponentViewController: UIViewController, BaseComponentProtocol, UITableViewDataSource {
     
     // MARK: - Model
     

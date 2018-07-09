@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// View model that holds data that can be used to display cells in a collection component.
 class BaseCollectionComponentModel {
     
     var data: [Any?]?

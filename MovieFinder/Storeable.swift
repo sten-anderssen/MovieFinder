@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Generic storable protocol. All stored elements must comply to this protocol.
 protocol Storeable {
     
 }

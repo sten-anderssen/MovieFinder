@@ -12,6 +12,7 @@ protocol BaseTableComponentViewCellProtocol {
     func updateUI()
 }
 
+/// Base view cell class for any cell used to display data in a table view component.
 class BaseTableComponentViewCell: UITableViewCell, BaseTableComponentViewCellProtocol {
     
     // MARK: - Model

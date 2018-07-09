@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Persistent controller that stores data in a file on the device.
 class CodingPersistenceController {
     
     private lazy var queryStore: [Query] = {

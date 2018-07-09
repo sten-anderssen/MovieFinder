@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// View controller that displays a search bar and shows movies for a given search query. Also displays up to ten of the most recent search queries.
 class MovieSearchViewController: UIViewController {
     
     // MARK: - Outlets
@@ -20,18 +21,21 @@ class MovieSearchViewController: UIViewController {
         UISearchController(searchResultsController: nil)
     }()
     
+    // Component that is able to show movies in a table view
     private lazy var movieSearchResultsComponent: MovieSearchResultsComponentViewController? = {
         let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "MovieSearchResultsComponentViewController") as? MovieSearchResultsComponentViewController
         controller?.delegate = self
         return controller
     }()
     
+    // Component that is able to show recent search querys in a table view
     private lazy var movieSearchQueriesComponent: MovieSearchQueriesComponentViewController? = {
         let controller = UIStoryboard.main.instantiateViewController(withIdentifier: "MovieSearchQueriesComponentViewController") as? MovieSearchQueriesComponentViewController
         controller?.delegate = self
         return controller
     }()
     
+    // The data controller that is responsible to query the network manager to load data from an API
     private lazy var dataController: MovieSearchDataController = {
         let controller = MovieSearchDataController()
         controller.delegate = self
@@ -43,6 +47,7 @@ class MovieSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setup the search controller
         guard let searchController = searchController else {
             return
         }
@@ -57,6 +62,7 @@ class MovieSearchViewController: UIViewController {
         
         definesPresentationContext = true
         
+        // Load the components as child view controllers
         setupMovieSearchResultsComponent()
         setupMovieSearchQueriesComponent()
     }

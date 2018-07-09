@@ -13,6 +13,7 @@ enum PersistenceError: Error {
     case saveError
 }
 
+/// Protocol to define a persistent controller.
 protocol PersistenceController {
 
     func findAll<T>(_ type:T.Type) -> [T]

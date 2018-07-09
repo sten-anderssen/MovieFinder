@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Model class that holds data for a movie.
 struct Movie {
     let id: Int
     let title: String
